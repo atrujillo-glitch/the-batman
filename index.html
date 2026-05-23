@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Batman (2022)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top right, rgba(255,0,0,0.18), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(255,255,255,0.05), transparent 25%);
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    backdrop-filter:blur(70px);
+    z-index:-1;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    padding:22px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    z-index:1000;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:800;
+    color:#ff2b2b;
+    letter-spacing:4px;
+}
+
+nav ul{
+    display:flex;
+    gap:28px;
+    list-style:none;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    font-size:15px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#ff2b2b;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 8% 70px;
+}
+
+.hero-content{
+    max-width:950px;
+    animation:fadeUp 1s ease;
+}
+
+.hero h1{
+    font-size:95px;
+    line-height:1;
+    margin-bottom:25px;
+    text-transform:uppercase;
+    letter-spacing:6px;
+}
+
+.hero h1 span{
+    color:#ff2b2b;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.9;
+    color:#d4d4d4;
+    margin-bottom:40px;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.btn{
+    padding:15px 32px;
+    border:none;
+    border-radius:14px;
+    background:#ff2b2b;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.4s;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 35px rgba(255,0,0,0.35);
+}
+
+.btn-outline{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.15);
+}
+
+.btn-outline:hover{
+    background:white;
+    color:black;
+}
+
+.hero-image{
+    margin-top:55px;
+}
+
+.hero-image img{
+    width:380px;
+    max-width:90%;
+    border-radius:24px;
+    box-shadow:0 20px 60px rgba(255,0,0,0.25);
+    transition:0.5s;
+}
+
+.hero-image img:hover{
+    transform:scale(1.03);
+}
+
+/* SECTIONS */
+
+section{
+    padding:120px 8%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:48px;
+    margin-bottom:55px;
+}
+
+.section-title span{
+    color:#ff2b2b;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.05);
+    border-radius:24px;
+    padding:32px;
+    backdrop-filter:blur(18px);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:rgba(255,0,0,0.4);
+    box-shadow:0 18px 45px rgba(255,0,0,0.15);
+}
+
+.card h3{
+    font-size:25px;
+    margin-bottom:16px;
+}
+
+.card p{
+    color:#d0d0d0;
+    line-height:1.9;
+}
+
+/* GALLERY */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.gallery img{
+    width:100%;
+    height:400px;
+    object-fit:cover;
+    border-radius:22px;
+    transition:0.5s;
+    cursor:pointer;
+}
+
+.gallery img:hover{
+    transform:scale(1.03);
+    box-shadow:0 18px 45px rgba(255,0,0,0.25);
+}
+
+/* TIMELINE */
+
+.timeline{
+    border-left:2px solid rgba(255,0,0,0.5);
+    padding-left:32px;
+    display:flex;
+    flex-direction:column;
+    gap:42px;
+}
+
+.timeline-item{
+    position:relative;
+}
+
+.timeline-item::before{
+    content:"";
+    position:absolute;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:#ff2b2b;
+    left:-41px;
+    top:5px;
+}
+
+.timeline-item h4{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.timeline-item p{
+    color:#d2d2d2;
+    line-height:1.8;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.stat-box{
+    background:rgba(255,255,255,0.04);
+    border-radius:22px;
+    padding:35px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.05);
+    transition:0.4s;
+}
+
+.stat-box:hover{
+    transform:translateY(-8px);
+    border-color:rgba(255,0,0,0.4);
+}
+
+.stat-box h2{
+    font-size:42px;
+    color:#ff2b2b;
+    margin-bottom:10px;
+}
+
+.stat-box p{
+    color:#d0d0d0;
+}
+
+/* QUOTE */
+
+.quote{
+    text-align:center;
+    padding:120px 8%;
+}
+
+.quote h2{
+    font-size:46px;
+    line-height:1.6;
+}
+
+.quote span{
+    color:#ff2b2b;
+}
+
+/* FOOTER */
+
+footer{
+    padding:45px;
+    text-align:center;
+    background:#020202;
+    border-top:1px solid rgba(255,255,255,0.06);
+    color:#999;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    nav ul{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:58px;
+    }
+
+    .section-title{
+        font-size:38px;
+    }
+
+    .quote h2{
+        font-size:32px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">BATMAN</div>
+
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#characters">Characters</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#stats">Stats</a></li>
+    </ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>THE <span>BATMAN</span></h1>
+
+        <p>
+            A dark, cinematic and emotional journey through Gotham City.
+            Explore the world of Batman as portrayed by Robert Pattinson
+            in Matt Reeves' acclaimed 2022 masterpiece.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#about" class="btn">Enter Gotham</a>
+            <a href="#gallery" class="btn btn-outline">View Gallery</a>
+        </div>
+
+        <div class="hero-image">
+            <img 
+            src="https://via-news.es/wp-content/uploads/2022/02/thebatman_destacada.jpg"
+            alt="The Batman">
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <h2 class="section-title">About The <span>Movie</span></h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Gotham City</h3>
+
+            <p>
+                Gotham is consumed by corruption, fear and violence.
+                Batman patrols the streets searching for justice while
+                uncovering secrets hidden deep within the city.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Bruce Wayne</h3>
+
+            <p>
+                Bruce Wayne is darker, more isolated and obsessed with
+                his mission. After two years as Batman, he still struggles
+                to understand what symbol he must become.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>The Riddler</h3>
+
+            <p>
+                A brilliant and terrifying serial killer who leaves
+                cryptic riddles behind while exposing Gotham's corruption
+                and challenging Batman's detective abilities.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CHARACTERS -->
+
+<section id="characters">
+
+    <h2 class="section-title">Main <span>Characters</span></h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Batman</h3>
+
+            <p>
+                Gotham's vigilante who uses fear, technology and detective
+                skills to fight crime in the shadows.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Catwoman</h3>
+
+            <p>
+                Selina Kyle is a mysterious thief searching for revenge
+                while building a complicated connection with Batman.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>James Gordon</h3>
+
+            <p>
+                One of Gotham's few honest police officers and Batman's
+                closest ally during the investigation.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>The Penguin</h3>
+
+            <p>
+                A dangerous crime boss deeply connected to Gotham's
+                criminal underworld and corruption network.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section id="gallery">
+
+    <h2 class="section-title">Dark <span>Gallery</span></h2>
+
+    <div class="gallery">
+
+        <img 
+        src="https://i.pathehome.com/product/global/phf-qdkwur0nkz/dde2c5-thebatman_b_fr.jpg?auto=format,compress"
+        alt="The Batman">
+
+        <img 
+        src="https://cinescopia.com/wp-content/uploads/2022/03/THE-BATMAN-2022-Trailer-de-la-pelicula-internacional-Robert-Pattinson.jpg"
+        alt="Batman Gotham">
+
+        <img 
+        src="https://i.pinimg.com/736x/e6/ea/7b/e6ea7b422ed38097761ea86112ac07e2.jpg"
+        alt="Robert Pattinson Batman">
+
+        <img 
+        src="https://media.cnn.com/api/v1/images/stellar/prod/cnne-1084382-the-batman.jpg?c=original"
+        alt="Batman Red Light">
+
+    </div>
+
+</section>
+
+<!-- TIMELINE -->
+
+<section id="timeline">
+
+    <h2 class="section-title">Batman <span>Timeline</span></h2>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+
+            <h4>Year One</h4>
+
+            <p>
+                Bruce Wayne begins his war against crime and learns
+                to use fear as a weapon.
+            </p>
+
+        </div>
+
+        <div class="timeline-item">
+
+            <h4>Year Two</h4>
+
+            <p>
+                Criminals across Gotham begin fearing the mysterious
+                vigilante hiding in the shadows.
+            </p>
+
+        </div>
+
+        <div class="timeline-item">
+
+            <h4>The Riddler Murders</h4>
+
+            <p>
+                A chain of murders forces Batman to uncover hidden
+                corruption involving Gotham's elite.
+            </p>
+
+        </div>
+
+        <div class="timeline-item">
+
+            <h4>Hope For Gotham</h4>
+
+            <p>
+                Batman realizes he must become more than vengeance.
+                He must become a symbol of hope.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STATS -->
+
+<section id="stats">
+
+    <h2 class="section-title">Movie <span>Stats</span></h2>
+
+    <div class="stats">
+
+        <div class="stat-box">
+            <h2>2022</h2>
+            <p>Release Year</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>176</h2>
+            <p>Minutes Runtime</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>PG-13</h2>
+            <p>Movie Rating</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>DC</h2>
+            <p>Universe</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- QUOTE -->
+
+<section class="quote">
+
+    <h2>
+        “It's not just a signal... <span>It's a warning.</span>”
+    </h2>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        The Batman (2022) • Modern Minimal Fan Website Inspired by Gotham City
+    </p>
+
+</footer>
+
+<script>
+
+/* SCROLL ANIMATION */
+
+const elements = document.querySelectorAll(
+'.card, .gallery img, .timeline-item, .stat-box'
+);
+
+elements.forEach(el => {
+
+    el.style.opacity = "0";
+    el.style.transform = "translateY(40px)";
+    el.style.transition = "0.8s";
+
+});
+
+window.addEventListener('scroll', () => {
+
+    elements.forEach(el => {
+
+        const top = el.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 80){
+
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+
+        }
+
+    });
+
+});
+
+/* PARALLAX EFFECT */
+
+window.addEventListener("scroll", () => {
+
+    const scroll = window.pageYOffset;
+
+    document.querySelector(".hero-image img").style.transform =
+    `translateY(${scroll * 0.05}px)`;
+
+});
+
+</script>
+
+</body>
+</html>
